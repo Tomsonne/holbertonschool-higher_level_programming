@@ -1,43 +1,40 @@
 >>> text_indentation = __import__('5-text_indentation').text_indentation
->>> text = "hola.soy Norman. mi apellido? Isaza."
+>>> text = "bonjour.thomas je suis français? merci."
 >>> text_indentation(text)
-hola.
+bonjour.
 <BLANKLINE>
-soy Norman.
+thomas je suis français?
 <BLANKLINE>
-mi apellido?
+merci.
 <BLANKLINE>
-Isaza.
-<BLANKLINE>
->>> text = "hola.soy Norman: mi apellido? Isaza."
+
+>>> text = "salut: thomas je suis français. Tu vas bien?"
 >>> text_indentation(text)
-hola.
+salut:
 <BLANKLINE>
-soy Norman:
+thomas je suis français.
 <BLANKLINE>
-mi apellido?
+Tu vas bien?
 <BLANKLINE>
-Isaza.
-<BLANKLINE>
->>> text = 5
+
+>>> text = 123
 >>> text_indentation(text)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "<stdin>", line 5, in text_indentation
 TypeError: text must be a string
->>> text = "5"
+
+>>> text = "123"
 >>> text_indentation(text)
-5
->>> text = "hola.    soy Norman.   quieres saber mi apellido?  es: Isaza.   "
+123
+
+>>> text = "  thomas.    je suis     français?   oui:    bien sûr.   "
 >>> text_indentation(text)
-hola.
+thomas.
 <BLANKLINE>
-soy Norman.
+je suis     français?
 <BLANKLINE>
-quieres saber mi apellido?
+oui:
 <BLANKLINE>
-es:
+bien sûr.
 <BLANKLINE>
-Isaza.
-<BLANKLINE>
->>>
