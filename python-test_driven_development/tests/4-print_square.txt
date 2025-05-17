@@ -1,0 +1,23 @@
+>>> print_square = __import__('4-print_square').print_square
+>>> size = None
+>>> print_square(size)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 6, in print_square
+TypeError: size must be an integer
+>>> size = 0
+>>> print_square(size)
+>>> 
+>>> size = -1
+>>> print_square(size)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 8, in print_square
+ValueError: size must be >= 0
+>>> size = -13.5
+>>> print_square(size)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 6, in print_square
+TypeError: size must be an integer
+>>>
