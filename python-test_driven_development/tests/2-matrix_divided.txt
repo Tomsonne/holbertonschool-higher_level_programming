@@ -1,3 +1,11 @@
+#!/usr/bin/python3
+"""
+This module provides a function to divide all elements of a matrix
+by a given number, rounding the results to 2 decimal places.
+
+Functions:
+    matrix_divided(matrix, div)
+"""
 >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
 >>> matrix = [[10, 8, 6], [20, 16, 12], [40, 32, 24]]
 >>> div = 2
