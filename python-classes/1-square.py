@@ -3,6 +3,11 @@
 
 
 class Square:
-    __size = 3
     """Classe qui ne fait rien pour l'instant (classe vide)"""
-    pass
+    def __init__(self, size):
+        """Initialisation d'une nouvelle instance de Square
+
+        Args:
+            size: La taille du carré (non vérifiée ici)
+        """
+        self.__size = size  # Attribut privé
