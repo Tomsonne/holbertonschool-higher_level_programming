@@ -21,4 +21,4 @@ class Square:
 
     def area(self):
         """Calcule et retourne l'aire du carré"""
-        return self.size * self.__size
+        return self.__size * self.__size
