@@ -59,4 +59,4 @@ class Rectangle:
 
     def __repr__(self):
         """Calcule et retourne le perimetre du rectangle"""
-        return f"Rectangle({self.width},{self.height})"
+        return f"Rectangle({self.width}, {self.height})"
