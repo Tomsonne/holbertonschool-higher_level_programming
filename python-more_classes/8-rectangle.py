@@ -6,7 +6,7 @@ class Rectangle:
     """Représente un rectangle."""
 
     number_of_instances = 0
-    print_symbol = "#"
+    print_symbol = '#'
 
     def __init__(self, width=0, height=0):
         """Initialise un rectangle avec une largeur et une hauteur."""
@@ -57,7 +57,7 @@ class Rectangle:
         else:
             lines = []
             for i in range(self.height):
-                lines.append(str(type(self).print_symbol) * self.width)
+                lines.append(str(self.print_symbol) * self.width)
             return "\n".join(lines)
 
     def __repr__(self):
@@ -68,3 +68,14 @@ class Rectangle:
         """Calcule et retourne le perimetre du rectangle"""
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
+
+    def bigger_or_equal(rect_1, rect_2):
+        """Calcule et retourne le perimetre du rectangle"""
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if Rectangle.area(rect_1) >= Rectangle.area(rect_2):
+            return rect_1
+        else:
+            return rect_2
