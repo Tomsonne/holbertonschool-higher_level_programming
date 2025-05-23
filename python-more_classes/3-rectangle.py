@@ -56,3 +56,7 @@ class Rectangle:
             for i in range(self.height):
                 lines.append("#" * self.width)
             return "\n".join(lines)
+
+    def __repr__(self):
+        """Calcule et retourne le perimetre du rectangle"""
+        return f"Rectangle({self.__width},{self.__height})"
