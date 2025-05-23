@@ -48,10 +48,10 @@ class Rectangle:
         return (self.__width*2) + (self.__height * 2)
 
     def __str__(self):
-        if self.__height == 0 or self.__width:
+        if self.height == 0 or self.width:
             return ""
         else:
             lines = []
-            for i in range(self.__height):
-                lines.append("#" * self.__width)
+            for i in range(self.height):
+                lines.append("#" * self.width)
             return "\n".join(lines)
