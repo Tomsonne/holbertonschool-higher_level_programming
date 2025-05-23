@@ -4,5 +4,4 @@
 
 class rectangle:
     """Classe qui ne fait rien pour l'instant (classe vide)"""
-    
     pass
