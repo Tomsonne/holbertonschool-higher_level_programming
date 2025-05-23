@@ -63,4 +63,4 @@ class Rectangle:
 
     def __del__(self):
         """Calcule et retourne le perimetre du rectangle"""
-        return "Bye rectangle..."
+        print("Bye rectangle...")
