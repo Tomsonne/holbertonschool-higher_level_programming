@@ -2,6 +2,6 @@
 """Définition d'une classe vide Rectangle """
 
 
-class rectangle:
+class Rectangle:
     """Classe qui ne fait rien pour l'instant (classe vide)"""
     pass
