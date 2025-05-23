@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""Définition d'une classe vide Rectangle """
+
+
 class Rectangle:
     """Représente un rectangle."""
 
