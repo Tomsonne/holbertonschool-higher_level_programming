@@ -1,9 +1,9 @@
 #!/usr/bin/python3
+"""
+bip
+bip
+"""
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
-"""
-bip
-bip
-"""
 
 
 class Rectangle(BaseGeometry):
