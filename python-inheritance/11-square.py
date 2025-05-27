@@ -1,9 +1,9 @@
 #!/usr/bin/python3
+"""
+bip
+bip
+"""
 Rectangle = __import__('9-rectangle').Rectangle
-"""
-bip
-bip
-"""
 
 
 class Square(Rectangle):
