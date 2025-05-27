@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+bip
+bip
+"""
+
+
 class MyList(list):
     """Classe qui hérite de list avec une méthode"""
 
