@@ -61,5 +61,5 @@ def shape_info(shape):
     """
     Affiche
     """
-    print("Area:", shape.area())
-    print("Perimeter:", shape.perimeter())
+    print("Area: ", shape.area())
+    print("Perimeter: ", shape.perimeter())
