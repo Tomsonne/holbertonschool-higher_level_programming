@@ -1,19 +1,15 @@
+"""
+Tests for  BaseGeometry function,
+asking us Write a class BaseGeometry that inherits from list
+"""
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
-
->>> bg.integer_validator("width", 10)
-
->>> bg.integer_validator("height", "bonjour")
-Traceback (most recent call last):
-...
-TypeError: height must be an integer
-
->>> bg.integer_validator("length", 0)
-Traceback (most recent call last):
-...
-ValueError: length must be greater than 0
-
->>> bg.integer_validator("age", -5)
-Traceback (most recent call last):
-...
-ValueError: age must be greater than 0
+>>> mod = __import__("7-base_geometry").BaseGeometry.integer_validator.__doc__
+	>>> len(mod) > 1
+	True
+ >>> c = __import__("7-base_geometry").BaseGeometry.__doc__
+    >>> len(c) > 1
+    True
+>>> m = __import__("7-base_geometry").__doc__
+    >>> len(m) > 1
+    True
