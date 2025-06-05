@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-It contains the class:
-CustomObject
+BIP
+BIPPP
 """
 import pickle
 
