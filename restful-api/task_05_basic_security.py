@@ -6,24 +6,17 @@ from flask_jwt_extended import (
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 
-# Création de l'application Flask
 app = Flask(__name__)
-
-# Initialisation de l'authentification basique
 auth = HTTPBasicAuth()
 
-# Configuration de la clé secrète utilisée pour sécuriser les tokens JWT
 app.config["JWT_SECRET_KEY"] = "ma_cle_secrete_super_secure"
-
-# Initialisation de la gestion JWT
 jwt = JWTManager(app)
 
-# Dictionnaire contenant les utilisateurs en mémoire
-# Chaque utilisateur a un nom, un mot de passe haché et un rôle
+# Utilisateurs en mémoire
 users = {
     "user1": {
         "username": "user1",
-        "password": generate_password_hash("password"),  # Hachage sécurisé
+        "password": generate_password_hash("password"),
         "role": "user"
     },
     "admin1": {
@@ -33,73 +26,69 @@ users = {
     }
 }
 
-# Fonction de vérification des identifiants pour l'authentification basique
 @auth.verify_password
 def verify_password(username, password):
     user = users.get(username)
     if user and check_password_hash(user["password"], password):
-        return username  # L'utilisateur est authentifié
+        return username
     return None
 
 @app.route("/basic-protected", methods=["GET"])
 @auth.login_required
-def basic_protected(username, password):
-    return "Basic Auth: Access Granted"
+def basic_protected():
+    username = auth.current_user()
+    return jsonify({"message": f"Basic Auth: Access granted to {username}"}), 200
 
 @app.route("/login", methods=["POST"])
 def login():
-    data = request.get_json()  # Récupération des données JSON envoyées
-    username = data.get("username") #prend la data json correspondante a username
-    password = data.get("password") #fait pareil
+    data = request.get_json()
+    username = data.get("username")
+    password = data.get("password")
     user = users.get(username)
 
-    if user is not None:
-        if verify_password(username, password) is not None:
-            jwt = create_access_token(identity=username)
-            res = {"access_token": jwt}
-            return jsonify(res)
-    
+    if user and verify_password(username, password):
+        access_token = create_access_token(identity=username)
+        return jsonify({"access_token": access_token}), 200
+
     return jsonify({"error": "Unauthorized"}), 401
 
-
-@app.route("/jwt-protected") # Prend methods GET quand même 
-@jwt_required() #protege la route
+@app.route("/jwt-protected", methods=["GET"])
+@jwt_required()
 def jwt_protected():
-    return ({"error": "Missing or invalid token"})
+    username = get_jwt_identity()
+    return jsonify({"message": f"JWT Auth: Access granted to {username}"}), 200
 
 @app.route("/admin-only", methods=["GET"])
 @jwt_required()
 def admin_only():
-    identity = get_jwt_identity()  
-    if identity["role"] != "admin":
-        return jsonify({"error": "Admin access required"}), 403
-    return "Admin Access: Granted"
+    username = get_jwt_identity()
+    user = users.get(username)
 
-# Erreur si le token est manquant
+    if not user or user["role"] != "admin":
+        return jsonify({"error": "Admin access required"}), 403
+
+    return jsonify({"message": "Admin Access: Granted"}), 200
+
+# Gestion des erreurs JWT
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     return jsonify({"error": "Missing or invalid token"}), 401
 
-# Erreur si le token est invalide (signature, format, etc.)
 @jwt.invalid_token_loader
 def handle_invalid_token_error(err):
     return jsonify({"error": "Invalid token"}), 401
 
-# Erreur si le token est expiré
 @jwt.expired_token_loader
 def handle_expired_token_error(jwt_header, jwt_payload):
     return jsonify({"error": "Token has expired"}), 401
 
-# Erreur si le token a été révoqué (non utilisé ici, mais prêt à l'emploi)
 @jwt.revoked_token_loader
 def handle_revoked_token_error(jwt_header, jwt_payload):
     return jsonify({"error": "Token has been revoked"}), 401
 
-# Erreur si un "fresh token" est requis (non utilisé ici)
 @jwt.needs_fresh_token_loader
 def handle_needs_fresh_token_error(jwt_header, jwt_payload):
     return jsonify({"error": "Fresh token required"}), 401
 
-# Lancement de l'application Flask
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
