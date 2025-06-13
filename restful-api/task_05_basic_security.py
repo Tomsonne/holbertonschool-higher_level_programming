@@ -74,3 +74,32 @@ def admin_only():
     if identity["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
     return "Admin Access: Granted"
+
+# Erreur si le token est manquant
+@jwt.unauthorized_loader
+def handle_unauthorized_error(err):
+    return jsonify({"error": "Missing or invalid token"}), 401
+
+# Erreur si le token est invalide (signature, format, etc.)
+@jwt.invalid_token_loader
+def handle_invalid_token_error(err):
+    return jsonify({"error": "Invalid token"}), 401
+
+# Erreur si le token est expiré
+@jwt.expired_token_loader
+def handle_expired_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Token has expired"}), 401
+
+# Erreur si le token a été révoqué (non utilisé ici, mais prêt à l'emploi)
+@jwt.revoked_token_loader
+def handle_revoked_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Token has been revoked"}), 401
+
+# Erreur si un "fresh token" est requis (non utilisé ici)
+@jwt.needs_fresh_token_loader
+def handle_needs_fresh_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Fresh token required"}), 401
+
+# Lancement de l'application Flask
+if __name__ == "__main__":
+    app.run()
