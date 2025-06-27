@@ -17,10 +17,11 @@ if __name__ == "__main__":
 
     db_url = f"mysql+mysqldb://{username}:{password}@localhost:3306/{db_name}"
     engine = create_engine(db_url, pool_pre_ping=True)
-    
+
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
+    states = session.query(State).filter
+    (State.name.like('%a%')).order_by(State.id).all()
     for state in states:
         print(f"{state.id}: {state.name}")
