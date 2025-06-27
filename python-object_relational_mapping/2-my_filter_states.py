@@ -13,6 +13,7 @@ if __name__ == "__main__":
     password = sys.argv[2]
     db_name = sys.argv[3]
     state_name = sys.argv[4]
+    
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -21,8 +22,10 @@ if __name__ == "__main__":
         db=db_name
     )
     cur = db.cursor()
+
     sql = ("SELECT * FROM states WHERE name LIKE BINARY '{}' "
            "ORDER BY states.id ASC;".format(state_name))
+    
     cur.execute(sql)
     rows = cur.fetchall()
     for row in rows:
