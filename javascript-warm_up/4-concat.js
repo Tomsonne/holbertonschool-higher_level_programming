@@ -4,17 +4,17 @@ const firstArg = process.argv[2];
 const SecondArg = process.argv[3];
 
 if (firstArg !== undefined) {
-    console.log(firstArg);
-    console.log('is');
+    process.stdout.write(firstArg);
+    process.stdout.write('is');
 }
 else {
-        console.log('undefined');
-        console.log('is');
+        process.stdout.write('undefined');
+        cprocess.stdout.write('is');
 }
 if (SecondArg !== undefined) {
-    console.log(SecondArg);
+    process.stdout.write(SecondArg);
 }
 else {
-        console.log('undefined');
+        process.stdout.write('undefined');
 }
 
