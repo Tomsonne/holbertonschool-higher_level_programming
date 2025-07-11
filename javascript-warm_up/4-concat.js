@@ -1,20 +1,12 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 
 const firstArg = process.argv[2];
-const SecondArg = process.argv[3];
+const secondArg = process.argv[3];
 
-if (firstArg !== undefined) {
-    process.stdout.write(firstArg);
-    process.stdout.write('is');
+if (firstArg !== undefined && secondArg !== undefined) {
+    console.log(firstArg + ' is ' + secondArg);
+} else if (firstArg !== undefined) {
+    console.log(firstArg + ' is undefined');
+} else {
+    console.log('undefined is undefined');
 }
-else {
-        process.stdout.write('undefined');
-        cprocess.stdout.write('is');
-}
-if (SecondArg !== undefined) {
-    process.stdout.write(SecondArg);
-}
-else {
-        process.stdout.write('undefined');
-}
-
