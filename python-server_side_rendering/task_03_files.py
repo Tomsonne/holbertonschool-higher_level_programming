@@ -9,7 +9,7 @@ def read_json():
         with open("products.json", "r") as file:
             return json.load(file)
     except Exception:
-        return []
+        return
 
 def read_csv():
     products = []
